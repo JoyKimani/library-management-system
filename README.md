@@ -2,9 +2,14 @@
 
 ## Database setup
 
-The API uses Prisma with PostgreSQL. Copy `api/.env.example` to `api/.env`, replace the placeholder database connection values with your local PostgreSQL settings, then generate the Prisma client and apply the schema migration.
+The API uses Prisma with PostgreSQL. Create a PostgreSQL database, then copy `api/.env.example` to `api/.env` and replace the placeholder connection values with your local settings. From the `api` directory, generate the Prisma client and apply the committed initial migration:
 
-The starter seed data can be loaded with Prisma's seed command after the database is available. It creates four genres and sixteen books.
+```sh
+npx prisma generate
+npx prisma migrate deploy
+```
+
+After installing the API dependencies, run `npx tsx prisma/seed.ts` from `api` to insert four genres and sixteen books. The seed uses upserts, so rerunning it does not create duplicates.
 
 ## Schema Decisions
 
